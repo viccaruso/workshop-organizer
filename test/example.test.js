@@ -1,7 +1,7 @@
 // IMPORT MODULES under test here:
 import { renderParticipant } from '../workshops.js';
 
-const test = QUnit.test;
+const { skip } = QUnit;
 
 skip('renderParticipant(participant)', (expect) => {
     //Arrange
