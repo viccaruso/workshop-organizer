@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { renderParticipant } from '../workshops.js';
+import { renderParticipant } from '../workshops/workshops.js';
 
 const { skip } = QUnit;
 
