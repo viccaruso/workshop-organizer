@@ -26,14 +26,11 @@ async function displayWorkshops() {
         const workshopDivEl = document.createElement('div');
         const titleEl = document.createElement('h2');
         const desctiptionEl = document.createElement('p');
-        const participantsEl = document.createElement('p');
+        const participantsEl = renderParticipant(workshop.workshop_participants);
 
         titleEl.textContent = workshop.name;
         desctiptionEl.textContent = workshop.description;
-        
-        for (let participant in workshop.participants) {
-            participantsEl.textContent += `${participant}, `;
-        }
+
         
         workshopDivEl.append(titleEl, desctiptionEl, participantsEl);
 
@@ -41,3 +38,14 @@ async function displayWorkshops() {
     }
 }
 
+function renderParticipant(participants) {
+    const participantsEl = document.createElement('div');
+    for (let participant of participants) {
+        const participantEl = document.createElement('p');
+        participantEl.classList.add('participant');
+        participantEl.textContent = ` ${participant.name} `;
+        participantsEl.append(participantEl);
+    }
+
+    return participantsEl;
+}
