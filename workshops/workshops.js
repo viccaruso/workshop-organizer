@@ -30,9 +30,11 @@ async function displayWorkshops() {
 
         titleEl.textContent = workshop.name;
         desctiptionEl.textContent = workshop.description;
-        participantsEl.textContent = workshop.participants;
-
-
+        
+        for (let participant in workshop.participants) {
+            participantsEl.textContent += `${participant}, `;
+        }
+        
         workshopDivEl.append(titleEl, desctiptionEl, participantsEl);
 
         workshopsContainerDiv.append(workshopDivEl);
