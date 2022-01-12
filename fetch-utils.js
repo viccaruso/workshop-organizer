@@ -3,6 +3,20 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsI
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+export async function getWorkshops() {
+    const response = await client
+        .from('workshops')
+        .select(`*, workshop_participants (*)`);
+
+    return checkError(response);
+}
+
+
+
+
+
+
+
 export async function getUser() {
     return client.auth.session();
 }
@@ -16,7 +30,7 @@ export async function checkAuth() {
 
 export async function redirectIfLoggedIn() {
     if (await getUser()) {
-        location.replace('./add-participant');
+        location.replace('./workshops');
     }
 }
 
