@@ -19,7 +19,6 @@ window.addEventListener('load', async() => {
         optionEl.textContent = workshop.name;
         dropdown.append(optionEl);
     }
-    console.log(form);
 });
 
 form.addEventListener('submit', async(e) => {

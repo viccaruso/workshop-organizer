@@ -1,4 +1,4 @@
-import { checkAuth, getWorkshops, logout } from '../fetch-utils.js';
+import { checkAuth, deleteParticipant, getWorkshops, logout } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -31,21 +31,27 @@ async function displayWorkshops() {
         titleEl.textContent = workshop.name;
         desctiptionEl.textContent = workshop.description;
 
-        
         workshopDivEl.append(titleEl, desctiptionEl, participantsEl);
 
         workshopsContainerDiv.append(workshopDivEl);
     }
 }
 
-function renderParticipant(participants) {
+export function renderParticipant(participants) {
     const participantsEl = document.createElement('div');
-    for (let participant of participants) {
+
+    for (let p of participants) {
         const participantEl = document.createElement('p');
+
         participantEl.classList.add('participant');
-        participantEl.textContent = ` ${participant.name} `;
+        participantEl.textContent = ` ${p.name} `;
+        participantEl.addEventListener('click', async() => {
+            await deleteParticipant(p.id);
+            await displayWorkshops();
+        });
+
         participantsEl.append(participantEl);
     }
-
+    console.log(participantsEl);
     return participantsEl;
 }

@@ -22,14 +22,19 @@ export async function createParticipant(participant) {
     return checkError(response);
 }
 
+export async function deleteParticipant(id) {
+    const response = await client
+        .from('workshop_participants')
+        .delete()
+        .match({ id: id })
+        .single();
 
-
-
+    return checkError(response);
+}
 
 export async function getUser() {
     return client.auth.session();
 }
-
 
 export async function checkAuth() {
     const user = await getUser();
